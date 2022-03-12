@@ -6,7 +6,7 @@ kv = require('kv')
 
 
 box.cfg {
-    log = './kv-server.log'
+    log = 'kv-server.log'
 }
 
 box.once('kv-1.0', kv.start)
