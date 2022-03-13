@@ -30,6 +30,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           script: |
+            docker stop $(docker ps -a -q)
+            docker rm $(docker ps -a -q)
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             docker pull rflban/interview_tarantool-kv
             docker run -d -p 8080:8080 rflban/interview_tarantool-kv
