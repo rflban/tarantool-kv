@@ -131,7 +131,7 @@ end
 env_port = os.getenv('PORT')
 
 local config = {
-    host = 'localhost',
+    host = '0.0.0.0',
     port = env_port and env_port or 8080
 }
 

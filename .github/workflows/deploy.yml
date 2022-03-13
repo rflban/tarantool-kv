@@ -11,9 +11,21 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - uses: akhileshns/heroku-deploy@v3.4.6
+
+      - name: Move sources to Staging server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_SERVER_KEY }}
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+
+      - name: Build and run
+        uses: appleboy/ssh-action@master
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: rflban-tarantool-kv
-          heroku_email: nabiev.alsn@yandex.ru
-          usedocker: true
+          key: ${{ secrets.SSH_SERVER_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          script: |
+            docker build -t interview_tarantool-kv .
+            docker run -d -p 80:8080 interview_tarantool-kv
