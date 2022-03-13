@@ -23,7 +23,6 @@ jobs:
           docker build -t rflban/interview_tarantool-kv .
           docker push rflban/interview_tarantool-kv
 
-
       - name: run
         uses: appleboy/ssh-action@master
         with:

@@ -1,7 +1,7 @@
 # Tarantool simple key-value store
 
 ## Deploy
-https://rflban-tarantool-kv.herokuapp.com/
+http://165.232.81.231/
 
 ## API
 - POST /kv body: {key: "test", "value": {SOME ARBITRARY JSON}} 
