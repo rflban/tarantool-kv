@@ -12,13 +12,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Move sources to Staging server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_SERVER_KEY }}
-          SOURCE: "."
-          REMOTE_HOST: ${{ secrets.SSH_HOST }}
-          REMOTE_USER: ${{ secrets.SSH_USER }}
+      #- name: Move sources to Staging server
+        #uses: easingthemes/ssh-deploy@main
+        #env:
+          #SSH_PRIVATE_KEY: ${{ secrets.SSH_SERVER_KEY }}
+          #SOURCE: "."
+          #REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          #REMOTE_USER: ${{ secrets.SSH_USER }}
 
       - name: Build and run
         uses: appleboy/ssh-action@master
